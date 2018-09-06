@@ -18,6 +18,8 @@ public class Pasien {
      * @param args the command line arguments
      */
     private String noRekamMedis;
+
+    
     private String nama;
     private String alamat;
     private String tempatLahir;
@@ -25,21 +27,28 @@ public class Pasien {
     private int bulanLahir;
     private int tahunLahir;
 
-    public String getNoRekamMedis() {
-        return noRekamMedis;
-    }
+//    public String getNoRekamMedis() {
+//        return noRekamMedis;
+//    }
 
     public void setNoRekamMedis(String noRekamMedis) {
         this.noRekamMedis = noRekamMedis;
     }
+    public String getNoRekamMedis() {
+        return noRekamMedis;
+    }
 
-    public void getNoRekamMedis(String noRekamMedis) throws Exception {
-        if (noRekamMedis.length() <= 4) {
-            this.noRekamMedis = noRekamMedis;
-
-        } else {
-            throw new Exception("Karakter yang anda input tidak sesuai");
-        }
+    public String NoRekamMedis(){
+        // mendeklarasikan variabel nomorRekamMedis yang bertipe String
+        String noRekamMedis;
+        // membuat objek baru date dengan tipe data Date
+        Date date = new Date();
+        // membuat objek ft bertipe simpleDateFormat sebagai format tampilan tanggal
+        SimpleDateFormat ft = new SimpleDateFormat("yyyMMdd");
+        //mendeklarasikan nilai dari variabel nomorRekamMedis yaitu tanggal ditambah 3 huruf pertama dari nama
+        noRekamMedis = ft.format(date) + nama.substring(0, 3);
+        //pengembalian nilai variabel nomorRekamMedis
+        return noRekamMedis;
     }
 
     public String getNama() {
@@ -76,12 +85,7 @@ public class Pasien {
         System.out.print(ft.format(tanggalKelahiran));
     }
 
-    public void getNoRekamMedisProses() {
-        Date tanggalKelahiran = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("ddMMyyyy");
-        System.out.print(ft.format(tanggalKelahiran));
-        System.out.print(getNoRekamMedis());
-    }
+
 
     public void setTanggalLahir(int tanggalLahir) throws Exception {
         if (tanggalLahir > 0 && tanggalLahir < 32) {
