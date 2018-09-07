@@ -27,14 +27,14 @@ public class Main1 {
             ps1.setNama("Gisella Berta");
             ps1.setTempatLahir("Sleman");
             ps1.setAlamat("Jalan Godean km 7, Sleman, YK");
-            ps1.setTanggalLahir(1);
-            ps1.setBulanLahir(1);
+            ps1.setTanggalLahir(7);
+            ps1.setBulanLahir(7);
             ps1.setTahunLahir(1999);
             ps2.setNama("Silvia Hadisantosa");
             ps2.setTempatLahir("Purwokerto");
-            ps2.setAlamat("Jalan Damai km 14, Bantul, YK");
-            ps2.setTanggalLahir(1);
-            ps2.setBulanLahir(1);
+            ps2.setAlamat("Jalan Damai km 14, Wonosari, YK");
+            ps2.setTanggalLahir(25);
+            ps2.setBulanLahir(6);
             ps2.setTahunLahir(1997);
             
             dk.setNama("Joko Ludrug");
@@ -52,8 +52,8 @@ public class Main1 {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        System.out.println(antre.getKlinik().getNama());
-        System.out.println("ID KLINIK : " + antre.getKlinik().getIdKlinik());
+        System.out.println("NAMA KLINIK \t: "+antre.getKlinik().getNamaKlinik());
+        System.out.println("ID KLINIK \t: " + antre.getKlinik().getIdKlinik());
         System.out.println("");
         
         for (int i = 0; i < antre.getDaftarPasien().size(); i++) {

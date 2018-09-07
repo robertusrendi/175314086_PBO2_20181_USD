@@ -12,67 +12,58 @@ package pasien;
 public class Klinik {
 
     private String idKlinik;
-    private String nama;
+    private String namaKlinik;
 
-    /**
-     * constructor untuk mendeklarasikan objek KLinik
-     */
+    
     public Klinik() {
+        /** Method constructor kosong untuk mendeklarasikan objek klinik
+         * 
+         */
 
     }
 
-    /**
-     * constructor untuk mendeklarasikan objek KLinik dengan parameter lokal
-     * idKlinik dan nama dengan tipe data String
-     *
-     * @param nama
-     */
-    public Klinik(String idKlinik, String nama) {
-        // pernyataan bahwa nilain variabel idKlinik sama dengan nilai dari variabel lokal idKlinik
+    
+    public Klinik(String idKlinik, String namaKlinik) {
+        // Method constructor dengan parameter lokal idKlinik dan namaKlinik yang bertipe String
         this.idKlinik = idKlinik;
-        // pernyataan bahwa nilain variabel nama sama dengan nilai dari variabel lokal nama
-        this.nama = nama;
+        // Mendeklarasikan bahwa nilai dari variable global idKlinik sama dengan nilai dari variable lokal idKlinik
+        this.namaKlinik = namaKlinik;
+        // Mendeklarasikan bahwa nilai dari variable global namaKlinik sama dengan nilai dari variable lokal namaKlinik
     }
 
-    /**
-     * method untuk mengambil nilai dari variabel idKlinik
-     *
-     * @return
-     */
+    
     public String getIdKlinik() {
-        //pengambalian nilai dari variabel idKlinik
+        /**method ini berguna untuk memanggil/mengambil nilai dari variable idKlinik
+         * 
+         */
         return idKlinik;
+        // mengembalikan nilai dari variable idKlinik
     }
 
-    /**
-     * method untuk meng-set nilai dari variabel idKLinik dengan variabel lokal
-     * idKLinik dengan tipe data String
-     *
-     * @param nama
-     */
+    
     public void setIdKlinik(String idKlinik) {
-        // pernyataan bahwa nilai dari variabel idKlinik sama dengan nilai dari variabel lokal idKLinik
+        /** Method ini berguna untuk mengisi nilai dari variable lokal idKlinik yang bertipe String
+         * 
+         */
         this.idKlinik = idKlinik;
+        // mendeklarasikan bahwa nilai dari variable global idKlinik sama dengan variable lokal idKlinik
     }
 
-    /**
-     * method untuk mengambil nilai dari variabel nama
-     *
-     * @return
-     */
-    public String getNama() {
-        //pengambalian nilai dari variabel nama
-        return nama;
+    
+    public String getNamaKlinik() {
+        /** Method ini berguna untuk mengambil nilai dari variable namaKlinik
+         * 
+         */
+        return namaKlinik;
+        // mengembalikan nilai dari variable namaKlinik
     }
 
-    /**
-     * method untuk meng-set nilai dari variabel nama dengan variabel lokal nama
-     * dengan tipe data String
-     *
-     * @param nama
-     */
-    public void setNama(String nama) {
-        // pernyataan bahwa nilai dari variabel nama sama dengan nilai dari variabel lokal nama
-        this.nama = nama;
+    
+    public void setNamaKlinik(String namaKlinik) {
+         /** Method ini berguna untuk mengisi nilai dari variable lokal namaKlinik yang bertipe String
+         * 
+         */
+        this.namaKlinik = namaKlinik;
+        // mendeklarasikan bahwa nilai dari variable global namaKlinik sama dengan variable lokal namaKlinik
     }
 }

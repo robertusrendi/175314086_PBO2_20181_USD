@@ -16,78 +16,75 @@ import java.util.Date;
 public class AntrianPasien {
 
     private Klinik klinik;
-    private ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
+    private ArrayList<Pasien> DaftarPasien = new ArrayList<Pasien>();
 
-    /**
-     * constructor untuk mendeklarasikan objek AntrianPasien
-     */
     public AntrianPasien() {
-
+        /**
+         * Metode constructor kosong untuk mendeklarasikan objek AntrianPasien
+         *
+         */
     }
 
-    /**
-     * method untuk mengambil nilai dari variabel klinik
-     *
-     * @return
-     */
     public Klinik getKlinik() {
-        //pengambalian nilai dari variabel klnik
+        /**
+         * Method untuk get/mengambil nilai dari variable klinik
+         *
+         */
         return klinik;
+        // return pada method ini berguna untuk mengembalikan nilai dari variable klinik
     }
 
-    /**
-     * method untuk meng-set nilai dari variabel klinik dengan variabel lokal
-     * klinik yang bertipe Klinik
-     *
-     * @param nama
-     */
     public void setKlinik(Klinik klinik) {
-        // pernyataan bahwa nilai dari variabel klinik sama dengan nilai dari variabel lokal klinik
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari variable klinik
+         *
+         */
         this.klinik = klinik;
+        // mendeklarasikan bahwa variable klinik global bernilai sama dengan variable klinik lokal dengan tipe Klinik
     }
 
-    /**
-     * method untuk mengambil nilai dari variabel daftarPasien
-     *
-     * @return
-     */
     public ArrayList<Pasien> getDaftarPasien() {
-        //pengambalian nilai dari variabel daftarPasien
-        return daftarPasien;
+        /**
+         * Method ini berguna untuk memanggil/mengambil nilai dari variable
+         * DaftarPasien
+         *
+         */
+        return DaftarPasien;
+        // return pada method ini berguna untuk mengembalikan nilai dari variable DaftarPasien
     }
 
-    /**
-     * method untuk meng-set nilai dari variabel daftarPasien dengan variabel
-     * lokal daftar pasien yang bertipe ArrayList pasien
-     *
-     * @param nama
-     */
-    public void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
-        // pernyataan bahwa nilai dari variabel daftarPasien sama dengan nilai dari variabel lokal daftarPasien
-        this.daftarPasien = daftarPasien;
+    public void setDaftarPasien(ArrayList<Pasien> DaftarPasien) {
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari variable DaftarPasien
+         * yang bertipe ArrayList<Pasien>
+         *
+         */
+
+        this.DaftarPasien = DaftarPasien;
+        // mendeklarasikan bahwa variable DaftarPasien global bernilai sama dengan variable DaftarPasien lokal dengan tipe ArrayList<Pasien>
     }
 
-    /**
-     * Method untuk menampilkan tanggal dan waktu antrian
-     */
     public void TanggalAntrian() {
-        // membuat objek baru date dengan tipe data Date
+        /**
+         * Method ini berguna untuk menentukan waktu antrian
+         *
+         */
+
         Date date = new Date();
-        // membuat objek ft bertipe simpleDateFormat sebagai format tampilan tanggal
+        // Mendeklarasikan objek baru date dengan tipe data Date
         SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yy");
-        // menampilkan data dari objek ft dengan format date
+        // membuat objek baru ft bertipe simpleDateFormat sebagai format tampilan tanggal
         System.out.println(ft.format(date));
+        // Menampilkan nilai dari objek ft dengan format date
     }
 
-    /**
-     * Method untuk mendaftar pasien baru di nomor antrian
-     *
-     * @param pasien
-     * @throws Exception
-     */
     public void Mendaftar(Pasien pasien) {
-        // mengisi data pada variabel daftarPasien dengan variabel lokal daftarPasien 
-        daftarPasien.add(pasien);
+        /**
+         * Method ini berguna untuk mendaftarkan Pasien pada nomor antrian
+         *
+         */
+        DaftarPasien.add(pasien);
+        //Mendeklarasikan nilai dari variable Global DaftarPasien dengan nilai dari variable lokal pasien
     }
 
 }
