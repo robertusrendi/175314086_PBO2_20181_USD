@@ -54,7 +54,7 @@ public class DaftarPasienBaruDialog extends JFrame {
          * nilai dari seluruh attribut
          */
         this.setLayout(null);
-        //Mengisi nilai/mengeset setLayout dengan null
+        //Mengisi nilai/mengeset setLayout dengan null.
         judulLabel = new JLabel("Form Daftar Antrian");
         //Membuat method baru judulLabel dengan tipe data JLabel dan mengisinya dengan "Form Daftar Antrian" 
         judulLabel.setBounds(80, 15, 200, 30);
