@@ -6,6 +6,8 @@
 package testView;
 
 import View.MainFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
@@ -13,11 +15,11 @@ import javax.swing.JMenuBar;
  *
  * @author jarkom
  */
-public class TestMainFrame {
+public class TestMainFrame{
     public static void main(String[] args) {
         MainFrame MF = new MainFrame();
         MF.setSize(300, 400);
         MF.setVisible(true);
     }
-    
+
 }

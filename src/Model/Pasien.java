@@ -6,6 +6,7 @@
 package Model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,29 +22,62 @@ public class Pasien {
     private String nama;
     private String alamat;
     private String tempatLahir;
+    private String nik;
     private int tanggalLahir;
     private int bulanLahir;
     private int tahunLahir;
+    public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
 
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
+    public Pasien() {
+        
+    }
+
+    public Pasien(String nama) {
+        this.nama = nama;
+    }
+
+    public Pasien(String nama, String Alamat, String tempatLahir, int tanggal, int bulan, int tahun, String nik) {
+        // pernyataan bahwa nilai variabel nama sama dengan nilai dari variabel lokal nama
+        this.nama = nama;
+        this.alamat = alamat;
+        this.tempatLahir = tempatLahir;
+        this.tanggalLahir = tanggal;
+        this.bulanLahir = bulan;
+        this.tahunLahir = tahun;
+        this.nik = nik;
+    }
 
     public void setNoRekamMedis(String noRekamMedis) {
-        /** Method ini berguna untuk set/mengisi nilai dari varible lokal noRekamMedis dengan tipe data String
-         * 
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari varible lokal
+         * noRekamMedis dengan tipe data String
+         *
          */
         this.noRekamMedis = noRekamMedis;
         //Mendeklarasikan bahwa nilai dari variable global noRekamMedis sama dengan variable lokal noRekamMedis
     }
+
     public String getNoRekamMedis() {
-        /** Method untuk memanggil/mengambil nilai dari variable noRekamMedis
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari variable noRekamMedis
+         *
          */
         return noRekamMedis;
         // mengembalikan nilai dari variable noRekamMedis
     }
 
-    public String NoRekamMedis(){
-        /** Method ini berguna untuk mengisi data noRekamMedis
-         * 
+    public String NoRekamMedis() {
+        /**
+         * Method ini berguna untuk mengisi data noRekamMedis
+         *
          */
         String noRekamMedis;
         // mendeklarasikan variable noRekamMedis dengan tipe String
@@ -58,40 +92,45 @@ public class Pasien {
     }
 
     public String getNama() {
-        /** Method untuk memanggil/mengambil nilai dari varible nama
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible nama
+         *
          */
         return nama;
         // mengembalikan nilai dari variable nama
     }
 
     public void setNama(String nama) {
-        /** mengisi/set nilai dari variable lokal nama yang bernilai String
-         * 
+        /**
+         * mengisi/set nilai dari variable lokal nama yang bernilai String
+         *
          */
         this.nama = nama;
         // mendeklarasikan bahwa nilai dari variable global nama sama dengan nilai dari variable lokal nama
     }
 
     public String getAlamat() {
-        /** Method untuk memanggil/mengambil nilai dari varible alamat
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible alamat
+         *
          */
         return alamat;
         // mengembalikan nilai dari variable alamat
     }
 
     public void setAlamat(String alamat) {
-        /** mengisi/set nilai dari variable lokal alamat yang bernilai String
-         * 
+        /**
+         * mengisi/set nilai dari variable lokal alamat yang bernilai String
+         *
          */
         this.alamat = alamat;
         // mendeklarasikan bahwa nilai dari variable global alamat sama dengan nilai dari variable lokal alamat
     }
 
     public String getTempatLahir() {
-        /** Method untuk memanggil/mengambil nilai dari varible tempatLahir
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible tempatLahir
+         *
          */
         return tempatLahir;
         //mengembalikan nilai dari variable tempatLahir
@@ -102,16 +141,19 @@ public class Pasien {
     }
 
     public int getTanggalLahir() {
-        /** Method untuk memanggil/mengambil nilai dari varible tanggalLahir
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible tanggalLahir
+         *
          */
         return tanggalLahir;
         //mengembalikan nilai dari variable tanggalLahir
     }
 
     public void getTanggalKelahiran() {
-        /** Method ini berguna untuk mengambil/memanggil data/nilai dari variable tanggalKelahiran
-         * 
+        /**
+         * Method ini berguna untuk mengambil/memanggil data/nilai dari variable
+         * tanggalKelahiran
+         *
          */
         Date tanggalKelahiran = new Date(getTahunLahir() - 1900, getBulanLahir() - 1, getTanggalLahir());
         // mendelarasikan objek baru tanggalKelahiran dengan tipe Date dan dengan perhitungan Date(getTahunLahir() - 1900, getBulanLahir() - 1, getTanggalLahir())
@@ -121,11 +163,11 @@ public class Pasien {
         // Menampilkan/print nilai dari objek ft dengan format tanggalKelahiran
     }
 
-
-
     public void setTanggalLahir(int tanggalLahir) throws Exception {
-        /** Method ini berguna untuk set/mengisi nilai dari variable lokal tanggalLahir yang bertipe int
-         * 
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari variable lokal
+         * tanggalLahir yang bertipe int
+         *
          */
         if (tanggalLahir > 0 && tanggalLahir < 32) {
             // Memberi syarat jika nilai dari variable tanggalLahir lebih dari 0 dan kurang dari 32 maka...
@@ -139,24 +181,28 @@ public class Pasien {
     }
 
     public int getBulanLahir() {
-        /** Method untuk memanggil/mengambil nilai dari varible bulanLahir
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible bulanLahir
+         *
          */
         return bulanLahir;
         // mengembalikan nilai dari variable bulanLahir
     }
 
     public int getTahunLahir() {
-        /** Method untuk memanggil/mengambil nilai dari varible tahunLahir
-         * 
+        /**
+         * Method untuk memanggil/mengambil nilai dari varible tahunLahir
+         *
          */
         return tahunLahir;
         //mengembalikan nilai dari variable tahunLahir
     }
 
     public void setTahunLahir(int tahunLahir) throws Exception {
-        /** Method ini berguna untuk set/mengisi nilai dari variable lokal tahunLahir yang bertipe int
-         * 
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari variable lokal
+         * tahunLahir yang bertipe int
+         *
          */
         if (tahunLahir > 0) {
             // memberi sayarat jika tahunLahir lebih dari 0 maka...
@@ -171,8 +217,10 @@ public class Pasien {
     }
 
     public void setBulanLahir(int bulanLahir) throws Exception {
-        /** Method ini berguna untuk set/mengisi nilai dari variable lokal bulanLahir yang bertipe int
-         * 
+        /**
+         * Method ini berguna untuk set/mengisi nilai dari variable lokal
+         * bulanLahir yang bertipe int
+         *
          */
         if (bulanLahir > 0 && bulanLahir < 13) {
             //memberi syarat jika bulanLahir lebih dari 0 dan kurang dari 13 maka...
@@ -181,7 +229,25 @@ public class Pasien {
         } else {
             //Jika syarat salah maka...
             throw new Exception("Bulan yang anda masukkan salah");
-             // akan mengembalikan/memberi pesan bahwa input tahunLahir salah
+            // akan mengembalikan/memberi pesan bahwa input tahunLahir salah
         }
+    }
+
+    public static void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
+        Pasien.daftarPasien = daftarPasien;
+    }
+
+    public static void tambahPasienBaru(Pasien pasien) {
+        Pasien.daftarPasien.add(pasien);
+    }
+
+    public static Pasien cariPasien(String noRM) {
+        for (int i = 0; i < daftarPasien.size(); i++) {
+            if (daftarPasien.get(i).getNik() == noRM) {
+                return daftarPasien.get(i);
+            }
+        }
+
+        return null;
     }
 }

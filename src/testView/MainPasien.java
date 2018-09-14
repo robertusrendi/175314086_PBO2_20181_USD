@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package testView;
 
+import Model.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author ASUS
  */
-public class Main1 {
+public class MainPasien {
     
     public static void main(String[] args) {
         Pasien ps1 = new Pasien();

@@ -5,16 +5,22 @@
  */
 package View;
 
+import Model.Pasien;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author jarkom
  */
-public class DaftarPasienBaruDialog extends JFrame {
+public class DaftarPasienBaruDialog extends JFrame implements ActionListener{
 
     JLabel judulLabel;
     //Mendeklarasikan attribut judulLabel dengan tipe data JLabel
@@ -26,6 +32,16 @@ public class DaftarPasienBaruDialog extends JFrame {
     //Mendeklarasikan attribut Nama dengan tipe data JLabel
     JTextField namaText;
     //Mendeklarasikan attribut namaText dengan tipe data JTextField
+    private JTextField nikText;
+    private JTextField alamatText;
+
+    public JTextField getNikText() {
+        return nikText;
+    }
+
+    public void setNikText(JTextField nikText) {
+        this.nikText = nikText;
+    }
     JButton saveButton;
     //Mendeklarasikan attribut saveButton dengan tipe data JButton
 
@@ -96,6 +112,28 @@ public class DaftarPasienBaruDialog extends JFrame {
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(saveButton);
         //Menambahkan saveButton
+        saveButton.addActionListener(this);
+        
+        
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == saveButton) {
+            Pasien baru = new Pasien();
+            baru.setNama(namaText.getText());
+            baru.setAlamat(alamatText.getText());
+            baru.setNik(nikText.getText());
+            try {
+                baru.setNoRekamMedis(nikText.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(DaftarPasienBaruDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Pasien.tambahPasienBaru(baru);
+
+            JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan");
+
+            this.dispose();
+        }
     }
 
 }

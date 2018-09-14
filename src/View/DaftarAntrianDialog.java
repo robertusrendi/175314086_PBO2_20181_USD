@@ -5,17 +5,22 @@
  */
 package View;
 
+import Model.Pasien;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author jarkom
  */
-public class DaftarAntrianDialog extends javax.swing.JDialog {
+public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionListener {
+
     JMenuBar menuBar;
     //Mendeklarasikan attribut menuBar dengan tipe data JMenuBar
     JMenu fileMenu;
@@ -34,6 +39,10 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
     //Mendeklarasikan attribut namaText dengan tipe data JTextField
     JButton saveButton;
     //Mendeklarasikan attribut saveButton dengan tipe data JButton
+    private JTextField nikText;
+    private JTextField alamatText;
+    private JTextField noRMText;
+    JButton tambahButton;
 
     public DaftarAntrianDialog() {
         /**
@@ -45,7 +54,8 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
 
     public DaftarAntrianDialog(String title) {
         /**
-         * Membuat method constructor dengan parameter title dengan tipe data String
+         * Membuat method constructor dengan parameter title dengan tipe data
+         * String
          */
         this.setTitle(title);
         //Mengisi nilai variable Title dengan nilai/data dari variable lokal title
@@ -55,10 +65,10 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
 
     public void init() {
         /**
-         * Membuat method init dengan tipe data void, method ini berguna untuk menginput
-         * nilai dari seluruh attribut
+         * Membuat method init dengan tipe data void, method ini berguna untuk
+         * menginput nilai dari seluruh attribut
          */
-        
+
         this.setLayout(null);
         //Mengisi nilai/mengeset setLayout dengan null
         judulLabel = new JLabel("Form Daftar Antrian");
@@ -67,7 +77,6 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(judulLabel);
         //Menambahkan judulLabel
-        
 
         nomerRM = new JLabel("Nomor RM : ");
         //Membuat method baru nomorRM dengan tipe data JLabel dengan isi "Nomor RM : "
@@ -75,42 +84,42 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(nomerRM);
         //Menambahkan nomorRM
-        
+
         Nama = new JLabel("Nama : ");
         //Membuat method baru Nama dengan tipe data JLabel dengan isi "Nama : "
         Nama.setBounds(20, 90, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(Nama);
         //Menambahkan Nama
-        
+
         Alamat = new JLabel("Alamat : ");
         //Membuat method baru Alamat dengan tipe data JLabel dengan isi "Alamat : "
         Alamat.setBounds(20, 130, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(Alamat);
         //Menambahkan Alamat
-        
+
         namaText = new JTextField();
         //Membuat method baru namaText dengan tipe data JTextField
         namaText.setBounds(120, 50, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(namaText);
         //Menambahkan namaText
-        
+
         namaText = new JTextField();
         //Membuat method baru namaText dengan tipe data JTextField
         namaText.setBounds(120, 90, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(namaText);
         //Menambahkan namaText
-        
+
         namaText = new JTextField();
         //Membuat method baru namaText dengan tipe data JTextField
         namaText.setBounds(120, 130, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(namaText);
         //Menambahkan namaText
-        
+
         saveButton = new JButton("SIMPAN");
         //Membuat method baru saveButton dengan tipe data JButton
         saveButton.setBounds(120, 200, 100, 30);
@@ -119,6 +128,33 @@ public class DaftarAntrianDialog extends javax.swing.JDialog {
         //Menambahkan saveButton
         
         
+
     }
 
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == noRMText) {
+            Pasien cari = Pasien.cariPasien(noRMText.getText());
+            if (cari == null) {
+                JOptionPane.showConfirmDialog(null, "Orang Tidak Ada");
+            } else {
+                namaText.setText(cari.getNama());
+            }
+        }
+        if (ae.getSource() == namaText) {
+            JOptionPane.showMessageDialog(null, namaText.getText());
+        }
+        if (ae.getSource() == alamatText) {
+            JOptionPane.showMessageDialog(null, alamatText.getText());
+        }
+        if (ae.getSource() == tambahButton) {
+            Pasien baru = new Pasien();
+            baru.setNama(namaText.getText());
+            baru.setAlamat(alamatText.getText());
+
+            Pasien.tambahPasienBaru(baru);
+
+            JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan");
+        }
+    }
 }
