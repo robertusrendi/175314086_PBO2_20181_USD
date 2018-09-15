@@ -26,8 +26,8 @@ public class MainFrame extends JFrame implements ActionListener {
     //Mendeklarasikan attribut fileMenu dengan tipe data fileMenu
     JMenuItem exitMenuItem;
     //Mendeklarasikan attribut exitMenuItem dengan tipe data JMenuItem
-    JMenuItem tambahAntrian;
     JMenuItem tambahPasien;
+    JMenuItem tambahAntrian;
 
     public MainFrame() throws HeadlessException {
         /**
@@ -50,11 +50,11 @@ public class MainFrame extends JFrame implements ActionListener {
         //Membuat objek baru fileMenu dengan tipe data JMenu dengan isi parameternya "File"
         exitMenuItem = new JMenuItem("Exit");
         //Membuat objek baru exitMenuItem dengan tipe data JMenuItem dengan isi parameter "Exit"
-        tambahAntrian = new JMenuItem("Tambah Antrian");
         tambahPasien = new JMenuItem("Tambah Pasien");
+        tambahAntrian = new JMenuItem("Tambah Antrian");
         fileMenu.add(exitMenuItem);
-        fileMenu.add(tambahAntrian);
         fileMenu.add(tambahPasien);
+        fileMenu.add(tambahAntrian);
         //Menambahkan exitMenuItem pada fileMenu
         menuBar.add(fileMenu);
         
@@ -63,8 +63,8 @@ public class MainFrame extends JFrame implements ActionListener {
         
         //Mengisi/Mengeset setJMenuBar dengan menuBar
         exitMenuItem.addActionListener(this);
-        tambahAntrian.addActionListener(this);
         tambahPasien.addActionListener(this);
+        tambahAntrian.addActionListener(this);
 
     }
 
@@ -74,12 +74,12 @@ public class MainFrame extends JFrame implements ActionListener {
             DaftarAntrianDialog data = new DaftarAntrianDialog();
             System.exit(0);
         }
-        if (e.getSource() == tambahAntrian) {
+        if (e.getSource() == tambahPasien) {
             DaftarPasienBaruDialog test = new DaftarPasienBaruDialog("Dialog Baru");
-            test.setSize(300, 400);
+            test.setSize(500, 510);
             test.setVisible(true);
         }
-        if (e.getSource() == tambahPasien) {
+        if (e.getSource() == tambahAntrian) {
             DaftarAntrianDialog test = new DaftarAntrianDialog("Latihan Dialog");
             test.setSize(300, 400);
             test.setVisible(true);
