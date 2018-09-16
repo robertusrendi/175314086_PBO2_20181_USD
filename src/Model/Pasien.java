@@ -22,13 +22,15 @@ public class Pasien {
     private String nama;
     private String alamat;
     private String tempatLahir;
+    private String nik;
     private int tanggalLahir;
     private int bulanLahir;
     private int tahunLahir;
     public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
+    
 
     public Pasien() {
-        
+
     }
 
     public Pasien(String nama) {
@@ -224,6 +226,14 @@ public class Pasien {
         }
     }
 
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
     public static void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
         Pasien.daftarPasien = daftarPasien;
     }
@@ -233,11 +243,15 @@ public class Pasien {
     }
 
     public static Pasien cariPasien(String noRM) {
-        for (int i = 0; i < daftarPasien.size(); i++) {
-            if (daftarPasien.get(i).getNoRekamMedis()== noRM) {
-                return daftarPasien.get(i);
+        Pasien result = null;
+        boolean test = false;
+        for (int i = 0; i < daftarPasien.size() && test; i++) {
+            if (daftarPasien.get(i).nik.equals(noRM)) {
+                test = true;
+                result = daftarPasien.get(i);
             }
         }
-        return null;
+        return result;
+
     }
 }

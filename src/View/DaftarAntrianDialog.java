@@ -134,20 +134,26 @@ public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionLi
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == tambahButton) {
-            Pasien baru = new Pasien();
-            baru.setNama(namaText.getText());
-            baru.setAlamat(alamatText.getText());
-            try {
-                baru.setNoRekamMedis(noRMText.getText());
-            } catch (Exception ex) {
-                Logger.getLogger(DaftarPasienBaruDialog.class.getName()).log(Level.SEVERE, null, ex);
+        if (ae.getSource() == noRMText) {
+            Pasien cari = Pasien.cariPasien(noRMText.getText());
+            if (cari == null) {
+                JOptionPane.showMessageDialog(null, "Data Pasien " + noRMText.getText() + " Pasien Tidak Ada ");
+            }else{
+            namaText.setText(cari.getNama());
+            alamatText.setText(cari.getAlamat());
             }
-            Pasien.tambahPasienBaru(baru);
-
-            JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan");
-
-            this.dispose();
+            
         }
+        if (ae.getSource() == tambahButton) {
+            Pasien cari = Pasien.cariPasien(noRMText.getText());
+            for (int i = 0; i < Pasien.daftarPasien.size(); i++) {
+                if (cari == Pasien.daftarPasien.get(i)) {
+                    JOptionPane.showMessageDialog(null, "Nama Antrian Anda : " + (i+1));
+                    this.dispose();           
+                }
+            }
+            
+        }
+
     }
 }
