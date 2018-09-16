@@ -14,8 +14,8 @@ import View.DaftarPasienBaruDialog;
  */
 public class TestDialogBaru {
     public static void main(String[] args) {
-        DaftarPasienBaruDialog test = new DaftarPasienBaruDialog("Dialog Baru");
-        test.setSize(600, 510);
+        DaftarPasienBaruDialog test = new DaftarPasienBaruDialog();
+        test.setSize(600, 500);
         test.setVisible(true);
     }
 }

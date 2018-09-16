@@ -19,9 +19,8 @@ import javax.swing.JFrame;
 public class TestMainFrame{
     public static void main(String[] args) {
         MainFrame MF = new MainFrame();
-        MF.setSize(600, 400);
+        MF.setSize(600, 500);
         MF.setVisible(true);
         MF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 }

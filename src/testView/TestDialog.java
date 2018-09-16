@@ -14,8 +14,8 @@ import javax.swing.JFrame;
  */
 public class TestDialog {
     public static void main(String[] args) {
-        DaftarAntrianDialog test = new DaftarAntrianDialog("Latihan Dialog");
-        test.setSize(600, 400);
+        DaftarAntrianDialog test = new DaftarAntrianDialog();
+        test.setSize(600, 500);
         test.setVisible(true);
     }
 }

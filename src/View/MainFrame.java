@@ -76,12 +76,12 @@ public class MainFrame extends JFrame implements ActionListener {
         }
         if (e.getSource() == tambahPasien) {
             DaftarPasienBaruDialog test = new DaftarPasienBaruDialog("Dialog Baru");
-            test.setSize(600, 510);
+            test.setSize(600, 500);
             test.setVisible(true);
         }
         if (e.getSource() == tambahAntrian) {
             DaftarAntrianDialog test = new DaftarAntrianDialog("Latihan Dialog");
-            test.setSize(600, 400);
+            test.setSize(600, 500);
             test.setVisible(true);
         }
 
