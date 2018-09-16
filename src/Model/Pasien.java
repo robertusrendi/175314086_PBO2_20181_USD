@@ -33,14 +33,11 @@ public class Pasien {
 
     }
 
-    public Pasien(String nama) {
-        this.nama = nama;
-    }
 
     public Pasien(String nama, String Alamat, String tempatLahir, int tanggal, int bulan, int tahun, String nik) {
         // pernyataan bahwa nilai variabel nama sama dengan nilai dari variabel lokal nama
         this.nama = nama;
-        this.alamat = alamat;
+        this.alamat = Alamat;
         this.tempatLahir = tempatLahir;
         this.tanggalLahir = tanggal;
         this.bulanLahir = bulan;
@@ -234,10 +231,6 @@ public class Pasien {
         this.nik = nik;
     }
 
-    public static void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
-        Pasien.daftarPasien = daftarPasien;
-    }
-
     public static void tambahPasienBaru(Pasien pasien) {
         Pasien.daftarPasien.add(pasien);
     }
@@ -245,7 +238,7 @@ public class Pasien {
     public static Pasien cariPasien(String noRM) {
         Pasien result = null;
         boolean test = false;
-        for (int i = 0; i < daftarPasien.size() && test; i++) {
+        for (int i = 0; i < daftarPasien.size() && test==false; i++) {
             if (daftarPasien.get(i).nik.equals(noRM)) {
                 test = true;
                 result = daftarPasien.get(i);

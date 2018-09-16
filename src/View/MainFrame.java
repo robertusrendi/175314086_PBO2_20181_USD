@@ -29,7 +29,7 @@ public class MainFrame extends JFrame implements ActionListener {
     JMenuItem tambahPasien;
     JMenuItem tambahAntrian;
 
-    public MainFrame() throws HeadlessException {
+    public MainFrame()  {
         /**
          * Membuat method constructor kosong MainFrame()
          */
@@ -71,17 +71,17 @@ public class MainFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == exitMenuItem) {
-            DaftarAntrianDialog data = new DaftarAntrianDialog();
+//            DaftarAntrianDialog data = new DaftarAntrianDialog();
             System.exit(0);
         }
         if (e.getSource() == tambahPasien) {
             DaftarPasienBaruDialog test = new DaftarPasienBaruDialog("Dialog Baru");
-            test.setSize(500, 510);
+            test.setSize(600, 510);
             test.setVisible(true);
         }
         if (e.getSource() == tambahAntrian) {
             DaftarAntrianDialog test = new DaftarAntrianDialog("Latihan Dialog");
-            test.setSize(300, 400);
+            test.setSize(600, 400);
             test.setVisible(true);
         }
 

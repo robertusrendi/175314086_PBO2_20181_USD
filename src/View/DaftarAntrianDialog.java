@@ -11,17 +11,19 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+
 /**
  *
  * @author jarkom
  */
-public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionListener {
+public class DaftarAntrianDialog extends JDialog implements ActionListener {
 
     JMenuBar menuBar;
     //Mendeklarasikan attribut menuBar dengan tipe data JMenuBar
@@ -89,6 +91,7 @@ public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionLi
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(noRMText);
         //Menambahkan namaText
+        noRMText.addActionListener(this);
 
         namaLabel = new JLabel("Nama : ");
         //Membuat method baru Nama dengan tipe data JLabel dengan isi "Nama : "
@@ -103,7 +106,8 @@ public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionLi
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(namaText);
         //Menambahkan namaText
-
+        namaText.addActionListener(this);
+        
         Alamat = new JLabel("Alamat : ");
         //Membuat method baru Alamat dengan tipe data JLabel dengan isi "Alamat : "
         Alamat.setBounds(20, 130, 100, 30);
@@ -117,17 +121,14 @@ public class DaftarAntrianDialog extends javax.swing.JDialog implements ActionLi
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(alamatText);
         //Menambahkan namaText
-
+        alamatText.addActionListener(this);
+        
         tambahButton = new JButton("TAMBAH");
         //Membuat method baru saveButton dengan tipe data JButton
         tambahButton.setBounds(120, 200, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(tambahButton);
         //Menambahkan saveButton
-        
-        noRMText.addActionListener(this);
-        namaText.addActionListener(this);
-        alamatText.addActionListener(this);
         tambahButton.addActionListener(this);
 
     }

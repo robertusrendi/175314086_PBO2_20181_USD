@@ -188,7 +188,7 @@ public class DaftarPasienBaruDialog extends JFrame implements ActionListener {
             Pasien baru = new Pasien();
             baru.setNama(namaText.getText());
             baru.setAlamat(alamatText.getText());
-            baru.setNoRekamMedis(nikText.getText());
+            baru.setNik(nikText.getText());
             Pasien.tambahPasienBaru(baru);
             JOptionPane.showMessageDialog(null, "Data Telah Ditambahkan");
 
