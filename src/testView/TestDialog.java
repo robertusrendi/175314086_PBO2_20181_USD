@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class TestDialog {
     public static void main(String[] args) {
-        DaftarAntrianDialog test = new DaftarAntrianDialog();
+        DaftarAntrianDialog test = new DaftarAntrianDialog("Antrian Baru");
         test.setSize(600, 500);
         test.setVisible(true);
     }
