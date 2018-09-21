@@ -15,76 +15,140 @@ import java.util.Date;
  */
 public class AntrianPasien {
 
+    public static ArrayList<AntrianPasien> daftar = new ArrayList<AntrianPasien>();
     private Klinik klinik;
-    private ArrayList<Pasien> DaftarPasien = new ArrayList<Pasien>();
+    private ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
+    private int tanggalAntrian;
+    private int bulanAntrian;
+    private int tahunAntrian;
 
+    public int getTanggalAntrian() {
+        return tanggalAntrian;
+    }
+
+    public void setTanggalAntrian(int tanggalAntrian) {
+        this.tanggalAntrian = tanggalAntrian;
+    }
+
+    public int getBulanAntrian() {
+        return bulanAntrian;
+    }
+
+    public void setBulanAntrian(int bulanAntrian) {
+        this.bulanAntrian = bulanAntrian;
+    }
+
+    public int getTahunAntrian() {
+        return tahunAntrian;
+    }
+
+    public void setTahunAntrian(int tahunAntrian) {
+        this.tahunAntrian = tahunAntrian;
+    }
+
+    /**
+     * constructor untuk mendeklarasikan objek AntrianPasien
+     */
     public AntrianPasien() {
-        /**
-         * Metode constructor kosong untuk mendeklarasikan objek AntrianPasien
-         *
-         */
+
     }
 
+    /**
+     * method untuk mengambil nilai dari variabel klinik
+     *
+     * @return
+     */
     public Klinik getKlinik() {
-        /**
-         * Method untuk get/mengambil nilai dari variable klinik
-         *
-         */
+        //pengambalian nilai dari variabel klnik
         return klinik;
-        // return pada method ini berguna untuk mengembalikan nilai dari variable klinik
     }
 
+    /**
+     * method untuk meng-set nilai dari variabel klinik dengan variabel lokal
+     * klinik yang bertipe Klinik
+     *
+     * @param nama
+     */
     public void setKlinik(Klinik klinik) {
-        /**
-         * Method ini berguna untuk set/mengisi nilai dari variable klinik
-         *
-         */
+        // pernyataan bahwa nilai dari variabel klinik sama dengan nilai dari variabel lokal klinik
         this.klinik = klinik;
-        // mendeklarasikan bahwa variable klinik global bernilai sama dengan variable klinik lokal dengan tipe Klinik
     }
 
+    /**
+     * method untuk mengambil nilai dari variabel daftarPasien
+     *
+     * @return
+     */
     public ArrayList<Pasien> getDaftarPasien() {
-        /**
-         * Method ini berguna untuk memanggil/mengambil nilai dari variable
-         * DaftarPasien
-         *
-         */
-        return DaftarPasien;
-        // return pada method ini berguna untuk mengembalikan nilai dari variable DaftarPasien
+        //pengambalian nilai dari variabel daftarPasien
+        return daftarPasien;
     }
 
-    public void setDaftarPasien(ArrayList<Pasien> DaftarPasien) {
-        /**
-         * Method ini berguna untuk set/mengisi nilai dari variable DaftarPasien
-         * yang bertipe ArrayList<Pasien>
-         *
-         */
-
-        this.DaftarPasien = DaftarPasien;
-        // mendeklarasikan bahwa variable DaftarPasien global bernilai sama dengan variable DaftarPasien lokal dengan tipe ArrayList<Pasien>
+    /**
+     * method untuk meng-set nilai dari variabel daftarPasien dengan variabel
+     * lokal daftar pasien yang bertipe ArrayList pasien
+     *
+     * @param nama
+     */
+    public void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
+        // pernyataan bahwa nilai dari variabel daftarPasien sama dengan nilai dari variabel lokal daftarPasien
+        this.daftarPasien = daftarPasien;
     }
 
+    /**
+     * Method untuk menampilkan tanggal dan waktu antrian
+     */
     public void TanggalAntrian() {
-        /**
-         * Method ini berguna untuk menentukan waktu antrian
-         *
-         */
-
+        // membuat objek baru date dengan tipe data Date
         Date date = new Date();
-        // Mendeklarasikan objek baru date dengan tipe data Date
-        SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yy");
-        // membuat objek baru ft bertipe simpleDateFormat sebagai format tampilan tanggal
+        // membuat objek ft bertipe simpleDateFormat sebagai format tampilan tanggal
+        SimpleDateFormat ft = new SimpleDateFormat("E dd/MM/yyy 'at' hh:mm:ss");
+        // menampilkan data dari objek ft dengan format date
         System.out.println(ft.format(date));
-        // Menampilkan nilai dari objek ft dengan format date
     }
 
+    /**
+     * Method untuk mendaftar pasien baru di nomor antrian
+     *
+     * @param pasien
+     * @throws Exception
+     */
     public void Mendaftar(Pasien pasien) {
-        /**
-         * Method ini berguna untuk mendaftarkan Pasien pada nomor antrian
-         *
-         */
-        DaftarPasien.add(pasien);
-        //Mendeklarasikan nilai dari variable Global DaftarPasien dengan nilai dari variable lokal pasien
+        // mengisi data pada variabel daftarPasien dengan variabel lokal daftarPasien 
+        getDaftarPasien().add(pasien);
+    }
+    public static void buatAntrian(int bulan, int tanggal, int tahun, Klinik klinik) {
+        AntrianPasien antrian = new AntrianPasien();
+        antrian.setTanggalAntrian(tanggal);
+        antrian.setBulanAntrian(bulan);
+        antrian.setTahunAntrian(tahun);
+        antrian.setKlinik(klinik);
+        if (cariAntrian(bulan, tanggal, tahun, klinik) == null) {
+            daftar.add(antrian);
+        } else {
+            System.out.println("Pasien Sudah Ada");
+        }
+    }
+    public static AntrianPasien cariAntrian(int bulan, int tanggal, int tahun, Klinik klinik) {
+        for (int i = 0; i < daftar.size(); i++) {
+            if (daftar.get(i).getTahunAntrian() == tahun
+                    && daftar.get(i).getBulanAntrian() == bulan
+                    && daftar.get(i).getTanggalAntrian() == tanggal
+                    && daftar.get(i).getKlinik().getIdKlinik().equalsIgnoreCase(klinik.getIdKlinik())
+                    && daftar.get(i).getKlinik().getNamaKlinik().equalsIgnoreCase(klinik.getNamaKlinik())) {
+                return daftar.get(i);
+            }
+        }
+        return null;
+
+    }
+
+    public String toString() {
+        return String.valueOf(tahunAntrian)
+                + String.valueOf(bulanAntrian)
+                + String.valueOf(tanggalAntrian)
+                + klinik.getIdKlinik()
+                + klinik.getNamaKlinik();
     }
 
 }
