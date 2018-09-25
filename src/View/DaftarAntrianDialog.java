@@ -25,24 +25,28 @@ import javax.swing.JTextField;
  */
 public class DaftarAntrianDialog extends JDialog implements ActionListener {
 
-    JMenuBar menuBar;
+    private JMenuBar menuBar;
     //Mendeklarasikan attribut menuBar dengan tipe data JMenuBar
-    JMenu fileMenu;
+    private JMenu fileMenu;
     //Mendeklarasikan attribut fileMenu dengan tipe data JMenu
-    JLabel judulLabel;
+    private JLabel judulLabel;
     //Mendeklarasikan attribut judulLabel dengan tipe data JLabel
-    JLabel namaLabel;
+    private JLabel namaLabel;
     //Mendeklarasikan attribut namaLabel dengan tipe data JLabel
-    JLabel nomerRM;
+    private JLabel nomerRM;
     //Mendeklarasikan attribut nomerRM dengan tipe data JLabel
-    JLabel Alamat;
+    private JLabel Alamat;
     //Mendeklarasikan attribut Alamat dengan tipe data JLabel
-    JTextField namaText;
+    private JTextField namaText;
     //Mendeklarasikan attribut namaText dengan tipe data JTextField
-    JButton tambahButton;
+    private JButton tambahButton;
     //Mendeklarasikan attribut saveButton dengan tipe data JButton
-    JTextField alamatText;
-    JTextField noRMText;
+    private JLabel tanggalLahir;
+    private JTextField alamatText;
+    private JTextField nomorRMtext;
+    private JTextField tanggalText;
+    private JTextField bulanText;
+    private JTextField tahunText;
 
     public DaftarAntrianDialog() {
         /**
@@ -85,13 +89,13 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener {
         this.add(nomerRM);
         //Menambahkan nomorRM
 
-        noRMText = new JTextField();
+        nomorRMtext = new JTextField();
         //Membuat method baru namaText dengan tipe data JTextField
-        noRMText.setBounds(120, 50, 100, 30);
+        nomorRMtext.setBounds(120, 50, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
-        this.add(noRMText);
+        this.add(nomorRMtext);
         //Menambahkan namaText
-        noRMText.addActionListener(this);
+        nomorRMtext.addActionListener(this);
 
         namaLabel = new JLabel("Nama : ");
         //Membuat method baru Nama dengan tipe data JLabel dengan isi "Nama : "
@@ -108,16 +112,33 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener {
         //Menambahkan namaText
         namaText.addActionListener(this);
         
+        tanggalLahir = new JLabel();
+        tanggalLahir.setText("Tanggal Lahir :");
+        tanggalLahir.setBounds(20, 130, 100, 30);
+        this.add(tanggalLahir);
+
+        tanggalText = new JTextField();
+        tanggalText.setBounds(120, 130, 40, 30);
+        this.add(tanggalText);
+
+        bulanText = new JTextField();
+        bulanText.setBounds(170, 130, 40, 30);
+        this.add(bulanText);
+
+        tahunText = new JTextField();
+        tahunText.setBounds(220, 130, 70, 30);
+        this.add(tahunText);
+        
         Alamat = new JLabel("Alamat : ");
         //Membuat method baru Alamat dengan tipe data JLabel dengan isi "Alamat : "
-        Alamat.setBounds(20, 130, 100, 30);
+        Alamat.setBounds(20, 170, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label(Tulisan) dan jarak label(Tulisan) terhadap tabel dialognya
         this.add(Alamat);
         //Menambahkan Alamat
 
         alamatText = new JTextField();
         //Membuat method baru namaText dengan tipe data JTextField
-        alamatText.setBounds(120, 130, 100, 30);
+        alamatText.setBounds(120, 170, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(alamatText);
         //Menambahkan namaText
@@ -125,7 +146,7 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener {
         
         tambahButton = new JButton("TAMBAH");
         //Membuat method baru saveButton dengan tipe data JButton
-        tambahButton.setBounds(120, 200, 100, 30);
+        tambahButton.setBounds(120, 220, 100, 30);
         //Menentukan/mengeset setBounds sebagai ukuran label dan jarak label terhadap tabel dialognya
         this.add(tambahButton);
         //Menambahkan saveButton
@@ -134,22 +155,28 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == noRMText) {
-            Pasien cari = Pasien.cariPasien(noRMText.getText());
+    public void actionPerformed(ActionEvent x) {
+        if (x.getSource() == nomorRMtext) {
+            Pasien cari = Pasien.cariPasien(nomorRMtext.getText());
             if (cari == null) {
-                JOptionPane.showMessageDialog(null, "Data Pasien " + noRMText.getText() + " Pasien Tidak Ada ");
+                JOptionPane.showMessageDialog(null, "Data Pasien " + nomorRMtext.getText() + " Pasien Tidak Ada ");
             }else{
             namaText.setText(cari.getNama());
             alamatText.setText(cari.getAlamat());
+            String tanggal = String.valueOf(cari.getTanggalLahir());
+                String bulan = String.valueOf(cari.getBulanLahir());
+                String tahun = String.valueOf(cari.getTahunLahir());
+                tanggalText.setText(tanggal);
+                bulanText.setText(bulan);
+                tahunText.setText(tahun);
             }
             
         }
-        if (ae.getSource() == tambahButton) {
-            Pasien cari = Pasien.cariPasien(noRMText.getText());
+        if (x.getSource() == tambahButton) {
+            Pasien cari = Pasien.cariPasien(nomorRMtext.getText());
             for (int i = 0; i < Pasien.daftarPasien.size(); i++) {
                 if (cari == Pasien.daftarPasien.get(i)) {
-                    JOptionPane.showMessageDialog(null, "Nama Antrian Anda : " + (i+1));
+                    JOptionPane.showMessageDialog(null, "Anda Antrian Ke-" + (i+1));
                     this.dispose();           
                 }
             }
@@ -157,4 +184,5 @@ public class DaftarAntrianDialog extends JDialog implements ActionListener {
         }
 
     }
+    
 }

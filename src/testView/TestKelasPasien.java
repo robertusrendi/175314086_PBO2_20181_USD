@@ -5,7 +5,7 @@
  */
 package testView;
 
-import Model.AntrianPasien;
+import Model.AntrianKlinik;
 import Model.Pasien;
 
 /**

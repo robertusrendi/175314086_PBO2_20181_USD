@@ -21,7 +21,7 @@ public class MainPasien {
         Pasien ps1 = new Pasien();
         Pasien ps2 = new Pasien();
         Dokter dk = new Dokter();
-        AntrianPasien antre = new AntrianPasien();
+        AntrianKlinik antre = new AntrianKlinik();
         Klinik klinik = new Klinik("NT70", "Netto");
         
         try {
