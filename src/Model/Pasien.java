@@ -5,9 +5,17 @@
  */
 package Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import test17oktober.TestStreaming1;
 
 /**
  *
@@ -18,7 +26,7 @@ public class Pasien {
     /**
      * @param args the command line arguments
      */
-    private String noRekamMedis;
+    private String NoRM;
     private String nama;
     private String alamat;
     private String tempatLahir;
@@ -27,12 +35,18 @@ public class Pasien {
     private int bulanLahir;
     private int tahunLahir;
     public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
-    
 
     public Pasien() {
 
     }
 
+    public static ArrayList<Pasien> getDaftarPasien() {
+        return daftarPasien;
+    }
+
+    public static void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
+        Pasien.daftarPasien = daftarPasien;
+    }
 
     public Pasien(String nama, String Alamat, String tempatLahir, int tanggal, int bulan, int tahun, String nik) {
         // pernyataan bahwa nilai variabel nama sama dengan nilai dari variabel lokal nama
@@ -42,42 +56,42 @@ public class Pasien {
         this.tanggalLahir = tanggal;
         this.bulanLahir = bulan;
         this.tahunLahir = tahun;
-        this.noRekamMedis = nik;
+        this.NoRM = nik;
     }
 
-    public void setNoRekamMedis(String noRekamMedis) {
+    public void setNoRM(String NoRM) {
         /**
          * Method ini berguna untuk set/mengisi nilai dari varible lokal
          * noRekamMedis dengan tipe data String
          *
          */
-        this.noRekamMedis = noRekamMedis;
+        this.NoRM = NoRM;
         //Mendeklarasikan bahwa nilai dari variable global noRekamMedis sama dengan variable lokal noRekamMedis
     }
 
-    public String getNoRekamMedis() {
+    public String getNoRM() {
         /**
          * Method untuk memanggil/mengambil nilai dari variable noRekamMedis
          *
          */
-        return noRekamMedis;
+        return NoRM;
         // mengembalikan nilai dari variable noRekamMedis
     }
 
-    public String NoRekamMedis() {
+    public String NoRM() {
         /**
          * Method ini berguna untuk mengisi data noRekamMedis
          *
          */
-        String noRekamMedis;
+        String NoRM;
         // mendeklarasikan variable noRekamMedis dengan tipe String
         Date date = new Date();
         // Membuat objek baru date dengan tipe data Date
         SimpleDateFormat ft = new SimpleDateFormat("yyyyMMdd");
         // membuat objek baru ft dengan tipe simpleDateFormat sebagai format tampilan tanggal pendaftaran
-        noRekamMedis = ft.format(date) + nama.substring(0, 3);
+        NoRM = ft.format(date) + nama.substring(0, 3);
         //mendeklarasikan nilai dari variabel nomorRekamMedis yaitu tanggal ditambah 3 huruf pertama dari nama Pasien
-        return noRekamMedis;
+        return NoRM;
         // Mengembalikan nilai dari variable noRekamMedis
     }
 
@@ -238,7 +252,7 @@ public class Pasien {
     public static Pasien cariPasien(String noRM) {
         Pasien result = null;
         boolean test = false;
-        for (int i = 0; i < daftarPasien.size() && test==false; i++) {
+        for (int i = 0; i < daftarPasien.size() && test == false; i++) {
             if (daftarPasien.get(i).nik.equals(noRM)) {
                 test = true;
                 result = daftarPasien.get(i);
@@ -246,5 +260,54 @@ public class Pasien {
         }
         return result;
 
+    }
+
+    public static void simpanDaftarPasien(File file) {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            for (int i = 0; i < daftarPasien.size(); i++) {
+                String data = daftarPasien.get(i).toString();
+                fos.write(data.getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void bacaDaftarPasien(File file) {
+        FileInputStream fis = null;
+        try {
+            String hasilBaca = "";
+            fis = new FileInputStream(file);
+            int dataInt;
+            while ((dataInt = fis.read()) != -1) {
+                if ((char) dataInt != '\n') {
+                    hasilBaca = hasilBaca + (char) dataInt;
+                } else {
+                    Pasien temp = new Pasien();
+                    temp.setNama(hasilBaca);
+                    tambahPasienBaru(temp);
+                }
+            }
+            System.out.println(hasilBaca);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public String toString() {
+        return NoRM + "\t" + nama + "\t" + alamat + "\n";
     }
 }

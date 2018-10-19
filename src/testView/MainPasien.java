@@ -70,7 +70,7 @@ public class MainPasien {
             antre.getDaftarPasien().get(i).getTanggalKelahiran();
             System.out.println("");
             System.out.println("Alamat Pasien \t : " + antre.getDaftarPasien().get(i).getAlamat());
-            System.out.print("No Rekam Medis \t : " + antre.getDaftarPasien().get(i).NoRekamMedis());     
+            System.out.print("No Rekam Medis \t : " + antre.getDaftarPasien().get(i).NoRM());     
             System.out.println("");
             System.out.print("                 ");
             System.out.println("-DATA DOKTER-");
