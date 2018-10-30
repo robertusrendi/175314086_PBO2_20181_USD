@@ -19,11 +19,12 @@ public class TesRumahSakit1 {
         Pasien pasien1 = new Pasien();
         pasien1.setNama("Puspa");
         pasien1.setAlamat("klaten");
+        pasien1.setNoRM("186");
         
         Pasien pasien2 = new Pasien();
         pasien2.setNama("Adi");
         pasien2.setAlamat("yogya");
-        
+        pasien2.setNoRM("389");
         RumahSakit rs = new RumahSakit("Panti Rapih","Yogyakarta");
         
         rs.tambahPasienBaru(pasien1);

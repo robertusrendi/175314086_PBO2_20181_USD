@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ import test17oktober.TestStreaming1;
  *
  * @author ASUS
  */
-public class Pasien {
+public class Pasien implements Serializable{
 
     /**
      * @param args the command line arguments
@@ -30,23 +31,25 @@ public class Pasien {
     private String nama;
     private String alamat;
     private String tempatLahir;
-    private String nik;
+    String nik;
     private int tanggalLahir;
     private int bulanLahir;
     private int tahunLahir;
     public static ArrayList<Pasien> daftarPasien = new ArrayList<Pasien>();
 
-    public Pasien() {
-
-    }
-
     public static ArrayList<Pasien> getDaftarPasien() {
         return daftarPasien;
     }
 
-    public static void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
-        Pasien.daftarPasien = daftarPasien;
+    public void setDaftarPasien(ArrayList<Pasien> daftarPasien) {
+        this.daftarPasien = daftarPasien;
     }
+
+    public Pasien() {
+
+    }
+
+    
 
     public Pasien(String nama, String Alamat, String tempatLahir, int tanggal, int bulan, int tahun, String nik) {
         // pernyataan bahwa nilai variabel nama sama dengan nilai dari variabel lokal nama
@@ -245,8 +248,8 @@ public class Pasien {
         this.nik = nik;
     }
 
-    public static void tambahPasienBaru(Pasien pasien) {
-        Pasien.daftarPasien.add(pasien);
+    public  static void tambahPasienBaru(Pasien pasien) {
+       daftarPasien.add(pasien);
     }
 
     public static Pasien cariPasien(String noRM) {
@@ -262,7 +265,7 @@ public class Pasien {
 
     }
 
-    public static void simpanDaftarPasien(File file) {
+    public static  void simpanDaftarPasien(File file) {
         try {
             FileOutputStream fos = new FileOutputStream(file);
             for (int i = 0; i < daftarPasien.size(); i++) {
@@ -277,36 +280,51 @@ public class Pasien {
         }
     }
 
-    public static void bacaDaftarPasien(File file) {
+    public  static void bacaDaftarPasien(File file) {
         FileInputStream fis = null;
+        String hasil = "";
+        int dataInt;
+        boolean noRM = false;
+        boolean nama = false;
+        boolean alamat = false;
+        Pasien temp = new Pasien();
         try {
-            String hasilBaca = "";
             fis = new FileInputStream(file);
-            int dataInt;
             while ((dataInt = fis.read()) != -1) {
                 if ((char) dataInt != '\n') {
-                    hasilBaca = hasilBaca + (char) dataInt;
+                    if ((char) dataInt != '\t') {
+                        hasil = hasil + (char) dataInt;
+                    } else {
+                        if (noRM == false) {
+                            temp.setNoRM(hasil);
+                            noRM = true;
+                            hasil = "";
+                        } else if (nama == false) {
+                            temp.setNama(hasil);
+                            nama = true;
+                            hasil = "";
+                        }
+                    }
                 } else {
-                    Pasien temp = new Pasien();
-                    temp.setNama(hasilBaca);
+                    temp.setAlamat(hasil);
+                    alamat = true;
+                    hasil = "";
                     tambahPasienBaru(temp);
+                    noRM = false;
+                    nama = false;
+                    alamat = false;
+                    temp=new Pasien();
                 }
             }
-            System.out.println(hasilBaca);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fis.close();
-            } catch (IOException ex) {
-                Logger.getLogger(TestStreaming1.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
+    @Override
     public String toString() {
         return NoRM + "\t" + nama + "\t" + alamat + "\n";
     }
